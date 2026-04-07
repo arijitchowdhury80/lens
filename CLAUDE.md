@@ -32,6 +32,7 @@ Obsidian vault: `~/Library/CloudStorage/GoogleDrive-arijit.chowdhury@algolia.com
 - Data: mock JSON in packages/mock-data, NO real APIs yet
 
 ## Session Protocol
+0. Read WORKING-AGREEMENT.md at the repo root before any other steps
 1. Read the four Standards files listed above
 2. Read the relevant Specs for the task at hand
 3. Follow TDD: write test first, then implement
