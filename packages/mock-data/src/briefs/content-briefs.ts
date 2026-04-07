@@ -1,0 +1,47 @@
+import type { ContentBrief } from '@lens/types';
+import { namedEngagers } from '../engagers/named-engagers';
+
+export const contentBriefs: ContentBrief[] = [
+  {
+    id: 'brief-001',
+    title: 'The hidden cost of bad null results in luxury resale',
+    hook: 'We analyzed 1,200 zero-result queries on 8 luxury resale sites. The average shopper who hits a dead end leaves within 11 seconds.',
+    format: 'carousel',
+    voice: 'brand',
+    persona: 'ecommerce-builder',
+    shipBy: '2026-04-14',
+    cohort: 'ecommerce-builder',
+    pattern: 'original-research',
+    signal: 'Ecommerce-builder cohort up 18% this month; zero-result rate is the #1 pain point in post comments.',
+    whoToReach: [namedEngagers[0], namedEngagers[4]],
+    confidence: 4,
+  },
+  {
+    id: 'brief-002',
+    title: 'Embedding models for fashion search: what actually works in production',
+    hook: 'We benchmarked 5 embedding approaches on a 2M-SKU fashion catalog. Only two hit sub-100ms p95 latency at scale.',
+    format: 'pdf',
+    voice: 'brand',
+    persona: 'aiml-practitioner',
+    shipBy: '2026-04-18',
+    cohort: 'aiml-practitioner',
+    pattern: 'benchmark-teardown',
+    signal: 'AI-practitioner cohort grew 41% in 90 days. Embedding model selection is the top discussion thread.',
+    whoToReach: [namedEngagers[2]],
+    confidence: 3,
+  },
+  {
+    id: 'brief-003',
+    title: 'Pre-Shoptalk playbook: 3 conversations your search team should start now',
+    hook: 'Shoptalk Europe is 8 weeks out. Here is what the best search teams are prepping and who they want to meet.',
+    format: 'text',
+    voice: 'brand',
+    persona: 'gtm-leader',
+    shipBy: '2026-04-11',
+    cohort: 'gtm-leader',
+    pattern: 'event-momentum',
+    signal: 'Shoptalk agenda just dropped. Three of our top engagers are speaking. GTM cohort engagement flat, this could re-activate them.',
+    whoToReach: [namedEngagers[1], namedEngagers[3]],
+    confidence: 3,
+  },
+];
