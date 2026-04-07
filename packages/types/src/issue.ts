@@ -18,8 +18,35 @@ export interface Issue {
     entitiesTracked: number;
   };
 
-  /** Editor's note shown on the Opener screen — used by other screens later */
-  editorsNote?: string;
+  /** The editor's note for this issue — first-person voice, 80-150 words */
+  editorsNote: string;
+
+  /** The Week's Thesis — the single biggest pattern explaining the week */
+  thesis: {
+    /** The one-sentence claim. Short, declarative, no em-dashes. */
+    claim: string;
+    /** The simple visual comparison data (for the proof bar). */
+    visual: {
+      customerProof: {
+        label: string;
+        percentage: number;
+      };
+      vision: {
+        label: string;
+        percentage: number;
+      };
+    };
+    /** The supporting paragraph, 60 to 100 words. */
+    supporting: string;
+  };
+
+  /** Top-performing posts of the week, ranked by engagement rate */
+  topPosts: Array<{
+    headline: string;
+    format: 'carousel' | 'video' | 'text' | 'pdf' | 'image';
+    engagementRate: number;
+    whyItWorked: string;
+  }>;
 
   /** Status — drafts vs published */
   status: 'draft' | 'approved' | 'published';

@@ -5,6 +5,23 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  {
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "Literal[value=/\\u2014/]",
+          message:
+            "Em-dashes are banned in LENS content. See Standards/WritingSOPs.md for the rule and recommended replacements.",
+        },
+        {
+          selector: "TemplateElement[value.raw=/\\u2014/]",
+          message:
+            "Em-dashes are banned in LENS content. See Standards/WritingSOPs.md for the rule and recommended replacements.",
+        },
+      ],
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
