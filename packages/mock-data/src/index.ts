@@ -1,10 +1,3 @@
-export { issue14 } from './issues/issue-14';
-export { currentCohort } from './cohorts/current-cohort';
-export { namedEngagers } from './engagers/named-engagers';
-export { topPosts } from './posts/top-posts';
-export { networkMovements } from './network/movements';
-export { contentBriefs } from './briefs/content-briefs';
-export { cohortGapCards } from './explore/cohort-gap';
-export { switcherSignalCards } from './explore/switcher-signal';
-export { contentGapCards } from './explore/content-gap';
-export { narrativeGapCards } from './explore/narrative-gap';
+/** Barrel export for all LENS mock data used in development and testing. */
+
+export { mockIssues, getCurrentIssue } from './issues';
