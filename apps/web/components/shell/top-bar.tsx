@@ -3,13 +3,15 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+/** Available top-level navigation modes (Editorial and Explore). */
 const modes = [
   { label: 'Editorial', href: '/editorial' },
   { label: 'Explore', href: '/explore' },
 ] as const;
 
+/** Sticky top navigation bar with wordmark, mode tabs, and entity selector. */
 export function TopBar() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? '';
 
   const activeMode = modes.find((m) => pathname.startsWith(m.href))?.href ?? '/editorial';
 
