@@ -31,9 +31,21 @@ export function WhatPerformedSection({ issue }: WhatPerformedSectionProps) {
             format={post.format}
             engagementRate={post.engagementRate}
             whyItWorked={post.whyItWorked}
+            url={post.url}
+            publishedAt={post.publishedAt}
+            impressions={post.impressions}
+            reactions={post.reactions}
+            comments={post.comments}
+            reposts={post.reposts}
+            classification={post.classification}
+            namedSubject={post.namedSubject}
           />
         ))}
       </div>
+
+      <p className="mt-8 font-serif text-xl italic leading-relaxed text-foreground/70">
+        {issue.sectionConnectors.fromWhatPerformed}
+      </p>
     </article>
   );
 }

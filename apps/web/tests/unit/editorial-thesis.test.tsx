@@ -14,6 +14,22 @@ const mockIssue = {
   cover: { line1: 'Proof beats vision.', line2: 'Luxury beats everything.' },
   stats: { postsAnalyzed: 23, namedEngagers: 147, entitiesTracked: 6 },
   editorsNote: 'Test note.',
+  coverFraming: {
+    label: 'The week in one line',
+    subtitle: 'The pattern explaining 64 percent of this week engagement, in two sentences.',
+  },
+  thesisMethodology: {
+    metric: 'engagement rate',
+    formula: '(reactions + comments + reposts) divided by impressions',
+    customerProofPostCount: 7,
+    visionPostCount: 9,
+    timeWindow: 'April 1 to April 7, 2026',
+  },
+  sectionConnectors: {
+    fromOpener: 'See § 1 for the methodology, § 2 for the three posts that proved it.',
+    fromThesis: 'Read § 2 for the three posts that carried the customer-proof side.',
+    fromWhatPerformed: 'These three posts named the customers. The cohort behind them is in § 3.',
+  },
   thesis: {
     claim: 'Customer proof outperformed vision by more than 2x.',
     visual: {
@@ -34,6 +50,14 @@ const mockIssue = {
       format: 'text' as const,
       engagementRate: 5.0,
       whyItWorked: 'Test reason.',
+      url: 'https://www.linkedin.com/posts/algolia_test-activity-0000000000000000001',
+      publishedAt: '2026-04-02T14:30:00Z',
+      impressions: 10000,
+      reactions: 500,
+      comments: 50,
+      reposts: 20,
+      classification: 'customer-proof' as const,
+      namedSubject: null,
     },
   ],
   status: 'published' as const,
@@ -75,5 +99,37 @@ describe('ThesisSection component', () => {
     const textContent = container.textContent ?? '';
     const emDash = String.fromCharCode(0x2014);
     expect(textContent).not.toContain(emDash);
+  });
+
+  it('test_thesisSection_renders_methodologyHeader', () => {
+    render(<ThesisSection issue={mockIssue} />);
+    expect(screen.getByText('METHODOLOGY')).toBeDefined();
+  });
+
+  it('test_thesisSection_renders_methodologyMetric', () => {
+    render(<ThesisSection issue={mockIssue} />);
+    expect(screen.getByText(/engagement rate/i)).toBeDefined();
+  });
+
+  it('test_thesisSection_renders_methodologyFormula', () => {
+    render(<ThesisSection issue={mockIssue} />);
+    expect(screen.getByText(/reactions \+ comments \+ reposts/)).toBeDefined();
+  });
+
+  it('test_thesisSection_renders_methodologyPostCounts', () => {
+    const { container } = render(<ThesisSection issue={mockIssue} />);
+    const text = container.textContent ?? '';
+    expect(text).toContain('7 posts');
+    expect(text).toContain('9 posts');
+  });
+
+  it('test_thesisSection_renders_methodologyTimeWindow', () => {
+    render(<ThesisSection issue={mockIssue} />);
+    expect(screen.getByText(/April 1 to April 7, 2026/)).toBeDefined();
+  });
+
+  it('test_thesisSection_renders_connectorSentence', () => {
+    render(<ThesisSection issue={mockIssue} />);
+    expect(screen.getByText(/Read § 2 for the three posts that carried/)).toBeDefined();
   });
 });

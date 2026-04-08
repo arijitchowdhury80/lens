@@ -25,9 +25,27 @@ export function ThesisSection({ issue }: ThesisSectionProps) {
         vision={issue.thesis.visual.vision}
       />
 
+      <div className="mb-12 border-t border-foreground/10 pt-8">
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          METHODOLOGY
+        </p>
+        <p className="font-serif text-lg leading-relaxed text-foreground/70">
+          {issue.thesisMethodology.metric.charAt(0).toUpperCase() +
+            issue.thesisMethodology.metric.slice(1)}
+          , computed as {issue.thesisMethodology.formula}.{' '}
+          Customer-proof cohort: {issue.thesisMethodology.customerProofPostCount} posts.{' '}
+          Vision cohort: {issue.thesisMethodology.visionPostCount} posts.{' '}
+          Time window: {issue.thesisMethodology.timeWindow}.
+        </p>
+      </div>
+
       <div className="font-serif text-xl leading-relaxed text-foreground/80">
         {issue.thesis.supporting}
       </div>
+
+      <p className="mt-8 font-serif text-xl italic leading-relaxed text-foreground/70">
+        {issue.sectionConnectors.fromThesis}
+      </p>
     </article>
   );
 }

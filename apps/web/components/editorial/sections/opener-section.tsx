@@ -19,8 +19,12 @@ export function OpenerSection({ issue }: OpenerSectionProps) {
         {issue.editorsNote}
       </div>
 
+      <p className="mt-8 font-serif text-xl italic leading-relaxed text-foreground/70">
+        {issue.sectionConnectors.fromOpener}
+      </p>
+
       <footer className="mt-16 font-serif text-lg italic text-muted-foreground">
-        &ndash; The Editor
+        The Editor
       </footer>
     </article>
   );

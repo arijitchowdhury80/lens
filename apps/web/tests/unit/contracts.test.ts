@@ -133,4 +133,198 @@ describe('contract: mockIssues satisfies Issue[]', () => {
       }
     }
   });
+
+  /* ---- coverFraming ---- */
+
+  it('test_mockIssues_coverFraming_presentAndValid', () => {
+    for (const issue of mockIssues) {
+      expect(issue.coverFraming).toBeDefined();
+      expect(issue.coverFraming.label).toBeDefined();
+      expect(issue.coverFraming.subtitle).toBeDefined();
+    }
+  });
+
+  it('test_mockIssues_coverFramingLabel_isNonEmptyString', () => {
+    for (const issue of mockIssues) {
+      expect(issue.coverFraming.label).toBeTypeOf('string');
+      expect(issue.coverFraming.label.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('test_mockIssues_coverFramingSubtitle_isNonEmptyString', () => {
+    for (const issue of mockIssues) {
+      expect(issue.coverFraming.subtitle).toBeTypeOf('string');
+      expect(issue.coverFraming.subtitle.length).toBeGreaterThan(0);
+    }
+  });
+
+  /* ---- thesisMethodology ---- */
+
+  it('test_mockIssues_thesisMethodology_presentAndValid', () => {
+    for (const issue of mockIssues) {
+      expect(issue.thesisMethodology).toBeDefined();
+      expect(issue.thesisMethodology.metric).toBeDefined();
+      expect(issue.thesisMethodology.formula).toBeDefined();
+      expect(issue.thesisMethodology.customerProofPostCount).toBeDefined();
+      expect(issue.thesisMethodology.visionPostCount).toBeDefined();
+      expect(issue.thesisMethodology.timeWindow).toBeDefined();
+    }
+  });
+
+  it('test_mockIssues_thesisMethodologyMetric_isNonEmptyString', () => {
+    for (const issue of mockIssues) {
+      expect(issue.thesisMethodology.metric).toBeTypeOf('string');
+      expect(issue.thesisMethodology.metric.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('test_mockIssues_thesisMethodologyFormula_isNonEmptyString', () => {
+    for (const issue of mockIssues) {
+      expect(issue.thesisMethodology.formula).toBeTypeOf('string');
+      expect(issue.thesisMethodology.formula.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('test_mockIssues_thesisMethodologyPostCounts_arePositive', () => {
+    for (const issue of mockIssues) {
+      expect(issue.thesisMethodology.customerProofPostCount).toBeGreaterThan(0);
+      expect(issue.thesisMethodology.visionPostCount).toBeGreaterThan(0);
+    }
+  });
+
+  it('test_mockIssues_thesisMethodologyTimeWindow_isNonEmptyString', () => {
+    for (const issue of mockIssues) {
+      expect(issue.thesisMethodology.timeWindow).toBeTypeOf('string');
+      expect(issue.thesisMethodology.timeWindow.length).toBeGreaterThan(0);
+    }
+  });
+
+  /* ---- sectionConnectors ---- */
+
+  it('test_mockIssues_sectionConnectors_presentAndValid', () => {
+    for (const issue of mockIssues) {
+      expect(issue.sectionConnectors).toBeDefined();
+      expect(issue.sectionConnectors.fromOpener).toBeDefined();
+      expect(issue.sectionConnectors.fromThesis).toBeDefined();
+      expect(issue.sectionConnectors.fromWhatPerformed).toBeDefined();
+    }
+  });
+
+  it('test_mockIssues_sectionConnectorsFromOpener_isNonEmptyString', () => {
+    for (const issue of mockIssues) {
+      expect(issue.sectionConnectors.fromOpener).toBeTypeOf('string');
+      expect(issue.sectionConnectors.fromOpener.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('test_mockIssues_sectionConnectorsFromThesis_isNonEmptyString', () => {
+    for (const issue of mockIssues) {
+      expect(issue.sectionConnectors.fromThesis).toBeTypeOf('string');
+      expect(issue.sectionConnectors.fromThesis.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('test_mockIssues_sectionConnectorsFromWhatPerformed_isNonEmptyString', () => {
+    for (const issue of mockIssues) {
+      expect(issue.sectionConnectors.fromWhatPerformed).toBeTypeOf('string');
+      expect(issue.sectionConnectors.fromWhatPerformed.length).toBeGreaterThan(0);
+    }
+  });
+
+  /* ---- topPosts new metadata ---- */
+
+  it('test_mockIssues_topPostsUrl_isLinkedInUrl', () => {
+    for (const issue of mockIssues) {
+      for (const post of issue.topPosts) {
+        expect(post.url).toBeTypeOf('string');
+        expect(post.url).toMatch(/^https:\/\/www\.linkedin\.com\/posts\//);
+      }
+    }
+  });
+
+  it('test_mockIssues_topPostsPublishedAt_isISOString', () => {
+    for (const issue of mockIssues) {
+      for (const post of issue.topPosts) {
+        expect(post.publishedAt).toBeTypeOf('string');
+        const parsed = new Date(post.publishedAt);
+        expect(parsed.getTime()).not.toBeNaN();
+      }
+    }
+  });
+
+  it('test_mockIssues_topPostsImpressions_isPositiveInteger', () => {
+    for (const issue of mockIssues) {
+      for (const post of issue.topPosts) {
+        expect(Number.isInteger(post.impressions)).toBe(true);
+        expect(post.impressions).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('test_mockIssues_topPostsReactions_isPositiveInteger', () => {
+    for (const issue of mockIssues) {
+      for (const post of issue.topPosts) {
+        expect(Number.isInteger(post.reactions)).toBe(true);
+        expect(post.reactions).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('test_mockIssues_topPostsComments_isNonNegativeInteger', () => {
+    for (const issue of mockIssues) {
+      for (const post of issue.topPosts) {
+        expect(Number.isInteger(post.comments)).toBe(true);
+        expect(post.comments).toBeGreaterThanOrEqual(0);
+      }
+    }
+  });
+
+  it('test_mockIssues_topPostsReposts_isNonNegativeInteger', () => {
+    for (const issue of mockIssues) {
+      for (const post of issue.topPosts) {
+        expect(Number.isInteger(post.reposts)).toBe(true);
+        expect(post.reposts).toBeGreaterThanOrEqual(0);
+      }
+    }
+  });
+
+  it('test_mockIssues_topPostsClassification_isValidEnum', () => {
+    const validClassifications = ['customer-proof', 'vision', 'how-to', 'announcement', 'opinion'];
+    for (const issue of mockIssues) {
+      for (const post of issue.topPosts) {
+        expect(validClassifications).toContain(post.classification);
+      }
+    }
+  });
+
+  it('test_mockIssues_allNewFields_haveNoEmDashes', () => {
+    const emDash = String.fromCharCode(0x2014);
+    const enDash = String.fromCharCode(0x2013);
+    for (const issue of mockIssues) {
+      // coverFraming
+      expect(issue.coverFraming.label).not.toContain(emDash);
+      expect(issue.coverFraming.label).not.toContain(enDash);
+      expect(issue.coverFraming.subtitle).not.toContain(emDash);
+      expect(issue.coverFraming.subtitle).not.toContain(enDash);
+      // thesisMethodology
+      expect(issue.thesisMethodology.metric).not.toContain(emDash);
+      expect(issue.thesisMethodology.metric).not.toContain(enDash);
+      expect(issue.thesisMethodology.formula).not.toContain(emDash);
+      expect(issue.thesisMethodology.formula).not.toContain(enDash);
+      expect(issue.thesisMethodology.timeWindow).not.toContain(emDash);
+      expect(issue.thesisMethodology.timeWindow).not.toContain(enDash);
+      // sectionConnectors
+      expect(issue.sectionConnectors.fromOpener).not.toContain(emDash);
+      expect(issue.sectionConnectors.fromOpener).not.toContain(enDash);
+      expect(issue.sectionConnectors.fromThesis).not.toContain(emDash);
+      expect(issue.sectionConnectors.fromThesis).not.toContain(enDash);
+      expect(issue.sectionConnectors.fromWhatPerformed).not.toContain(emDash);
+      expect(issue.sectionConnectors.fromWhatPerformed).not.toContain(enDash);
+      // topPosts new fields
+      for (const post of issue.topPosts) {
+        expect(post.url).not.toContain(emDash);
+        expect(post.url).not.toContain(enDash);
+      }
+    }
+  });
 });

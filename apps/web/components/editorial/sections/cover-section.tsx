@@ -25,11 +25,17 @@ export function CoverSection({ issue }: CoverSectionProps) {
 
       {/* The week's claim */}
       <section className="mb-32">
+        <p className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          {issue.coverFraming.label}
+        </p>
         <h1 className="font-serif text-6xl font-light leading-[1.05] tracking-tight md:text-7xl">
           {issue.cover.line1}
           <br />
           {issue.cover.line2}
         </h1>
+        <p className="mt-8 font-serif text-xl italic text-foreground/70">
+          {issue.coverFraming.subtitle}
+        </p>
       </section>
 
       {/* Footer block */}
